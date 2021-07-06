@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+Run arbitrary C code from a command line.
+
+Note: This is not an actual REPL.
+"""
 
 from argparse import ArgumentParser
 import os
@@ -8,8 +13,9 @@ import subprocess
 import sys
 from tempfile import TemporaryDirectory
 
-parser = ArgumentParser(description="Run arbitrary C code from a command line.\nNote: This is not an actual REPL.")
 CC = os.environ.get("CC") or which("cc") or which("gcc") or which("clang")
+
+parser = ArgumentParser(description=__doc__)
 parser.add_argument('-m', '--main', action='store_true', help="Wrap code in a main function")
 
 if __name__ == '__main__':
