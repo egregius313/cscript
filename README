@@ -1,0 +1,5 @@
+# `cscript`
+
+`cscript(1)` is a simple Python script for executing arbitrary C code from the
+command line. This works by copying the content of `stdin` into a file,
+compiling, and executing.
