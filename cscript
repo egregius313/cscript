@@ -8,6 +8,7 @@ import sys
 from tempfile import TemporaryDirectory
 
 parser = ArgumentParser(description="Run arbitrary C code from a command line.\nNote: This is not an actual REPL.")
+CC = os.environ.get("CC") or which("cc") or which("gcc") or which("clang")
 parser.add_argument('-m', '--main', action='store_true', help="Wrap code in a main function")
 
 if __name__ == '__main__':
@@ -20,7 +21,7 @@ if __name__ == '__main__':
         with open(script, 'w') as script_file:
             script_file.write(sys.stdin.read())
 
-        compiler_call = subprocess.call(["cc", script, "-o", target])
+        compiler_call = subprocess.call([CC, script, "-o", target])
 
         process_call = subprocess.call([target])
 
